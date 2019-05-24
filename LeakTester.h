@@ -123,7 +123,9 @@ namespace __Tester__ {
       }
       else
         std::fprintf(output, "\n\nGREAT JOB! YOU DO NOT HAVE MEMORY LEAKAGE\n\n");
-      if(output != stdout) fclose(output);  
+      if(output != stdout) fclose(output);
+     
+      // change this line to avoid system messages like "sh:PAUSE command not found..."
       //std::system("PAUSE");
       std::cin.get();
 
