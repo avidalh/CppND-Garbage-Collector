@@ -100,7 +100,7 @@ bool Pointer<T, size>::first = true;
 
 // Constructor for both initialized and uninitialized objects. -> see class interface
 template<class T,int size>
-Pointer<T,size>::Pointer(T *t){
+Pointer<T,size>::Pointer(T *s){
     // Register shutdown() as an exit function.
     if (first)
         atexit(shutdown);
@@ -109,22 +109,22 @@ Pointer<T,size>::Pointer(T *t){
     // TODO: Implement Pointer constructor
     // Lab: Smart Pointer Project Lab
     // This statement registers shutdown() as an exit function.
-    list<PtrDetails<T> >::iterator i;
-    i = find_pointer_info(s);
+    typename std::list<PtrDetails<T> >::iterator i;
+    i = findPtrInfo(s);
     // If s is already in refContainer, then
     // increment its reference count.
     // Otherwise, add it to the list.
     if(i != refContainer.end())
-    i->cnt_ref++; // increment cnt_ref
+    i->refcount++; // increment cnt_ref
     else {
         // Create and store this entry.
         PtrDetails<T> obj(s, size);
         refContainer.push_front(obj);
     }
-    address = s;
-    arr_size = size;
-    if(size > 0) is_arr = true;
-    else is_arr = false;
+    addr = s;
+    arraySize = size;
+    if(size > 0) isArray = true;
+    else isArray = false;
 }
 
 // Copy constructor.
@@ -205,7 +205,17 @@ T *Pointer<T, size>::operator=(T *t){
 
     // TODO: Implement operator==
     // LAB: Smart Pointer Project Lab
-    
+    typename std::list<PtrDetails<T> >::iterator p;
+    // First, decrement the reference count
+    // for the memory currently being pointed to.
+    p = findPtrInfo(addr);
+    p->refcount--;
+    // Next, increment the reference count of
+    // the new address.
+    p = findPtrInfo(t);
+    p->refcount++;  // increment ref count
+    addr = t; // store the address.
+    return t;
 
 }
 // Overload assignment of Pointer to Pointer.
@@ -273,3 +283,4 @@ void Pointer<T, size>::shutdown(){
     }
     collect();
 }
+
