@@ -1,4 +1,4 @@
-## Application output capture
+## Application output log
 
 ```nix
 bash-3.2$ . ./make.sh 
