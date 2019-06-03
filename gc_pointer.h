@@ -217,7 +217,7 @@ T *Pointer<T, size>::operator=(T *t){
         p->refcount++;  // increment ref count
     else {
         PtrDetails<T> obj(t, size);
-        refContainer.push_front(obj)
+        refContainer.push_front(obj);
     }
     addr = t; // store the address.
     return t;
