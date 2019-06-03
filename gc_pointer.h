@@ -213,7 +213,12 @@ T *Pointer<T, size>::operator=(T *t){
     // Next, increment the reference count of
     // the new address.
     p = findPtrInfo(t);
-    p->refcount++;  // increment ref count
+    if(p != refContainer.end())
+        p->refcount++;  // increment ref count
+    else {
+        PtrDetails<T> obj(t, size);
+        refContainer.push_front(obj)
+    }
     addr = t; // store the address.
     return t;
 
