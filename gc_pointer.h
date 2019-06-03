@@ -107,6 +107,7 @@ Pointer<T,size>::Pointer(T *s){
     first = false;
 
     // TODO: Implement Pointer constructor
+    // DONE
     // Lab: Smart Pointer Project Lab
     // This statement registers shutdown() as an exit function.
     typename std::list<PtrDetails<T> >::iterator i;
@@ -132,6 +133,7 @@ template< class T, int size>
 Pointer<T,size>::Pointer(const Pointer &ob){
 
     // TODO: Implement Pointer constructor
+    // DONE
     // Lab: Smart Pointer Project Lab
     typename std::list<PtrDetails<T> >::iterator p;
     p = findPtrInfo(ob.addr);
@@ -149,6 +151,7 @@ template <class T, int size>
 Pointer<T, size>::~Pointer(){
     
     // TODO: Implement Pointer destructor
+    // DONE
     // Lab: New and Delete Project Lab
     typename std::list<PtrDetails<T> >::iterator p;
     p = findPtrInfo(addr);
@@ -168,6 +171,7 @@ template <class T, int size>
 bool Pointer<T, size>::collect(){
 
     // TODO: Implement collect function
+    // DONE
     // LAB: New and Delete Project Lab
     // Note: collect() will be called in the destructor
     bool memfreed = false;
@@ -203,7 +207,8 @@ bool Pointer<T, size>::collect(){
 template <class T, int size>
 T *Pointer<T, size>::operator=(T *t){
 
-    // TODO: Implement operator==
+    // TODO: Implement operator=
+    // DONE
     // LAB: Smart Pointer Project Lab
     typename std::list<PtrDetails<T> >::iterator p;
     // First, decrement the reference count
@@ -227,7 +232,8 @@ T *Pointer<T, size>::operator=(T *t){
 template <class T, int size>
 Pointer<T, size> &Pointer<T, size>::operator=(Pointer &rv){
 
-    // TODO: Implement operator==
+    // TODO: Implement operator=
+    // DONE
     // LAB: Smart Pointer Project Lab
     typename std::list<PtrDetails<T> >::iterator p;
     // First, decrement the reference count
